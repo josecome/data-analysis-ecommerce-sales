@@ -74,6 +74,9 @@ payments$created_at_ymd <- format(payments$created_date, format = '%Y%m%d')
 suppliers$created_at_ymd <- format(suppliers$created_date, format = '%Y%m%d')
 supplier_payments$created_at_ymd <- format(supplier_payments$created_date, format = '%Y%m%d')
 customers$created_at_ymd <- format(customers$created_date, format = '%Y%m%d')
+
+customers$customer_id <- customers$id
+carts <- merge(x = carts, y = customers[,c('customer_id', 'country')], by = c('customer_id'), all.x = TRUE)
 #==================================Output Tables=========================================
 dir.create(file.path(dir, "transformed_data"), showWarnings = FALSE)
 # Saving transformed data
